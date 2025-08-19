@@ -8,50 +8,67 @@
 
 ## 🎯 What I Built
 
-Property search platform with geolocation filtering and user authentication for Austria's real estate market. The system handles thousands of daily searches while providing a smooth experience for agents, buyers, and landlords.
+Property search platform with microservices architecture designed for Austria's real estate market. Built a hybrid AWS infrastructure combining serverless and traditional server components to handle thousands of daily searches efficiently.
 
 **Key Features:**
-- Location-based property search with interactive maps
-- Multi-user authentication (agents, buyers, landlords)
-- Search result caching for better performance
-- Mobile-responsive interface
-- Property favorites and saved searches
+- Distributed search service with geolocation filtering
+- Multi-tenant authentication across microservices
+- Event-driven architecture for real-time updates
+- Auto-scaling search and user management services
+- Cross-service communication with API Gateway
 
-## 🏗️ Technical Stack
+## 🏗️ Technical Architecture
 
-**Frontend:** React 18, TypeScript, Tailwind CSS, Leaflet Maps, React Query
+**Frontend:** React 18, TypeScript, Tailwind CSS, React Query
 
-**Backend:** Node.js, Express, PostgreSQL with PostGIS, Redis, JWT Auth
+**Microservices:** Node.js, Express, distributed across AWS Lambda and EC2
 
-**Infrastructure:** AWS (EC2, RDS, S3), CloudFront CDN
+**Data Layer:** PostgreSQL (RDS), Redis (ElastiCache), S3 for assets
 
-## 🔧 Technical Highlights
+**Infrastructure:** AWS API Gateway, Lambda, EC2, Application Load Balancer
 
-### Location Search
-Used PostGIS for spatial queries and distance calculations. Learning curve was worth it for the performance on location-based searches.
+## 🔧 Microservices Design
 
-### Caching Strategy
-Added Redis caching for popular searches. Made a noticeable difference during peak hours when the same areas get searched frequently.
+### Service Architecture
+Built as independent microservices communicating through API Gateway and internal service mesh:
 
-### Multi-User System
-Implemented role-based authentication where agents can manage listings, buyers can save searches, and landlords handle portfolios.
+- **Search Service:** Handles property queries and filtering logic
+- **User Service:** Authentication, authorization, and user management  
+- **Property Service:** CRUD operations and property data management
+- **Notification Service:** Real-time updates and email notifications
+- **Analytics Service:** Search tracking and performance metrics
 
-### Map Integration
-Integrated Leaflet with React for interactive property maps. Took some iterations to manage map state and property markers efficiently.
+### Serverless + Server Hybrid
+**Lambda Functions:** Lightweight operations like image processing, notifications, and analytics
+**EC2 Instances:** Heavy computational tasks like search indexing and database operations
+**API Gateway:** Central routing and rate limiting across all services
 
-## 📊 Current Performance
+### Inter-Service Communication
+Implemented asynchronous messaging with SQS for non-critical operations and direct HTTP calls for real-time data. Each service maintains its own database schema while sharing common authentication tokens.
 
-- **~5,000** daily property searches
-- **Multiple user types** with different permission levels
-- **Good uptime** during peak usage periods
-- **Responsive design** working well on mobile
+### Auto-Scaling Strategy
+Lambda functions scale automatically based on demand. EC2 instances use Application Load Balancer with auto-scaling groups that respond to CPU and memory metrics.
 
-## 🚀 What I Learned
+## 📊 Performance Characteristics
 
-- **PostGIS & Spatial Data:** Geographic queries and indexing
-- **Caching Strategies:** When and how to cache search results
-- **Multi-tenant Architecture:** Role-based permissions and access
-- **Performance Optimization:** Database indexing and query optimization
+- **Service Independence:** Each microservice can be deployed and scaled separately
+- **Fault Tolerance:** Service failures don't cascade due to circuit breaker patterns
+- **Load Distribution:** Traffic automatically distributed across healthy instances
+- **Cost Optimization:** Serverless functions reduce costs during low-traffic periods
+
+## 🚀 Technical Challenges Solved
+
+### Service Discovery
+Implemented service registry pattern where each microservice registers its health status and available endpoints with a central discovery service.
+
+### Data Consistency
+Used eventual consistency model with event sourcing for non-critical updates, while maintaining strong consistency for user authentication and payment-related operations.
+
+### Cross-Service Authentication
+JWT tokens validated at API Gateway level, then passed to individual services with user context and permissions.
+
+### Monitoring & Observability
+Distributed tracing across services using CloudWatch and custom metrics. Each service logs performance data that gets aggregated for system-wide monitoring.
 
 ## 🔗 Links
 
@@ -62,4 +79,4 @@ Integrated Leaflet with React for interactive property maps. Took some iteration
 
 **💼 Available for similar projects** | **📧 calindotgabriel18@gmail.com** | **💰 €60-80/hour**
 
-*Interested in building web applications with maps, search functionality, or multi-user systems.*
+*Specializing in microservices architecture, AWS infrastructure, and scalable distributed systems.*
