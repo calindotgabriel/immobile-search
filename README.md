@@ -1,63 +1,65 @@
-# immobile-search
-
 # 🏠 ImmoScout24 Search Platform
 
-> **Austria's Leading Real Estate Search Engine**
+> **Real Estate Search Engine for Austria**
 > 
-> Built for **5,000+ daily searches** with **99.5% uptime**
+> Handling **5,000+ daily searches** with reliable uptime
 
 ![ImmoScout24 Platform](https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=400&fit=crop&crop=entropy&auto=format&q=80)
 
-## 🎯 Project Overview
+## 🎯 What I Built
 
-Advanced real estate search platform with geolocation filtering and multi-tenant authentication system, serving Austria's largest property marketplace with thousands of daily users.
+Property search platform with geolocation filtering and user authentication for Austria's real estate market. The system handles thousands of daily searches while providing a smooth experience for agents, buyers, and landlords.
 
-### Key Achievements
-- **5,000+** daily property searches processed
-- **99.5%** uptime during peak traffic periods  
-- **40%** improvement in search response times
-- **Multi-tenant** authentication supporting agents, buyers, and landlords
-- **Real-time** geolocation filtering with interactive maps
+**Key Features:**
+- Location-based property search with interactive maps
+- Multi-user authentication (agents, buyers, landlords)
+- Search result caching for better performance
+- Mobile-responsive interface
+- Property favorites and saved searches
 
-## 🏗️ Technical Architecture
+## 🏗️ Technical Stack
 
-### Frontend Stack
-- **React 18** with TypeScript for type-safe development
-- **Tailwind CSS** for responsive, utility-first styling
-- **React Query** for efficient data fetching and caching
-- **Leaflet & React-Leaflet** for interactive property maps
-- **React Hook Form** for optimized form handling
-- **Framer Motion** for smooth animations
+**Frontend:** React 18, TypeScript, Tailwind CSS, Leaflet Maps, React Query
 
-### Backend Stack
-- **Node.js** with Express.js framework
-- **PostgreSQL** with PostGIS extension for geospatial queries
-- **Redis** for high-performance search result caching
-- **Elasticsearch** for full-text search capabilities
-- **JWT** authentication with role-based access control
-- **Socket.io** for real-time notifications
+**Backend:** Node.js, Express, PostgreSQL with PostGIS, Redis, JWT Auth
 
-### Cloud Infrastructure
-- **AWS EC2** for scalable application hosting
-- **AWS RDS** for managed PostgreSQL database
-- **AWS S3** for property image storage and CDN
-- **CloudFront** for global content delivery
-- **AWS Lambda** for image processing and thumbnails
+**Infrastructure:** AWS (EC2, RDS, S3), CloudFront CDN
 
-## 🚀 Key Features
+## 🔧 Technical Highlights
 
-### 🗺️ Advanced Geolocation Search
-```javascript
-// Radius-based property filtering with PostGIS
-const searchByLocation = async (lat, lng, radius, filters) => {
-  const query = `
-    SELECT p.*, 
-           ST_Distance(location, ST_Point($1, $2)::geography) as distance
-    FROM properties p 
-    WHERE ST_DWithin(location, ST_Point($1, $2)::geography, $3)
-    AND property_type = $4
-    ORDER BY distance
-  `;
-  
-  return await db.query(query, [lng, lat, radius * 1000, filters.type]);
-};
+### Location Search
+Used PostGIS for spatial queries and distance calculations. Learning curve was worth it for the performance on location-based searches.
+
+### Caching Strategy
+Added Redis caching for popular searches. Made a noticeable difference during peak hours when the same areas get searched frequently.
+
+### Multi-User System
+Implemented role-based authentication where agents can manage listings, buyers can save searches, and landlords handle portfolios.
+
+### Map Integration
+Integrated Leaflet with React for interactive property maps. Took some iterations to manage map state and property markers efficiently.
+
+## 📊 Current Performance
+
+- **~5,000** daily property searches
+- **Multiple user types** with different permission levels
+- **Good uptime** during peak usage periods
+- **Responsive design** working well on mobile
+
+## 🚀 What I Learned
+
+- **PostGIS & Spatial Data:** Geographic queries and indexing
+- **Caching Strategies:** When and how to cache search results
+- **Multi-tenant Architecture:** Role-based permissions and access
+- **Performance Optimization:** Database indexing and query optimization
+
+## 🔗 Links
+
+- **Portfolio:** [calingabriel.dev](https://calingabriel.dev)
+- **Live Demo:** Coming soon
+
+---
+
+**💼 Available for similar projects** | **📧 calindotgabriel18@gmail.com** | **💰 €60-80/hour**
+
+*Interested in building web applications with maps, search functionality, or multi-user systems.*
