@@ -6,9 +6,9 @@
 
 ![ImmoScout24 Platform](https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=400&fit=crop&crop=entropy&auto=format&q=80)
 
-## 🎯 What I Built
+## 🎯 What We Built
 
-Property search platform with microservices architecture designed for Austria's real estate market. Built a hybrid AWS infrastructure combining serverless and traditional server components to handle thousands of daily searches efficiently.
+Property search platform with microservices architecture designed for Austria's real estate market. Our team built a hybrid AWS infrastructure combining serverless and traditional server components to handle thousands of daily searches efficiently.
 
 **Key Features:**
 - Distributed search service with geolocation filtering
@@ -23,14 +23,14 @@ Property search platform with microservices architecture designed for Austria's 
 
 **Microservices:** Node.js, Express, distributed across AWS Lambda and EC2
 
-**Data Layer:** PostgreSQL (RDS), Redis (ElastiCache), S3 for assets
+**Data Layer:** MongoDB (Atlas), Redis (ElastiCache), S3 for assets
 
 **Infrastructure:** AWS API Gateway, Lambda, EC2, Application Load Balancer
 
 ## 🔧 Microservices Design
 
 ### Service Architecture
-Built as independent microservices communicating through API Gateway and internal service mesh:
+Our team designed independent microservices communicating through API Gateway and internal service mesh:
 
 - **Search Service:** Handles property queries and filtering logic
 - **User Service:** Authentication, authorization, and user management  
@@ -39,43 +39,47 @@ Built as independent microservices communicating through API Gateway and interna
 - **Analytics Service:** Search tracking and performance metrics
 
 ### Serverless + Server Hybrid
-**Lambda Functions:** Lightweight operations like image processing, notifications, and analytics
+**Lambda Functions:** We implemented lightweight operations like image processing, notifications, and analytics
 **EC2 Instances:** Heavy computational tasks like search indexing and database operations
 **API Gateway:** Central routing and rate limiting across all services
 
 ### Inter-Service Communication
-Implemented asynchronous messaging with SQS for non-critical operations and direct HTTP calls for real-time data. Each service maintains its own database schema while sharing common authentication tokens.
+We implemented asynchronous messaging with SQS for non-critical operations and direct HTTP calls for real-time data. Each service maintains its own MongoDB collection while sharing common authentication tokens.
 
 ### Auto-Scaling Strategy
-Lambda functions scale automatically based on demand. EC2 instances use Application Load Balancer with auto-scaling groups that respond to CPU and memory metrics.
+Lambda functions scale automatically based on demand. Our team configured EC2 instances with Application Load Balancer and auto-scaling groups that respond to CPU and memory metrics.
 
 ## 📊 Performance Characteristics
 
 - **Service Independence:** Each microservice can be deployed and scaled separately
-- **Fault Tolerance:** Service failures don't cascade due to circuit breaker patterns
+- **Fault Tolerance:** Service failures don't cascade due to circuit breaker patterns we implemented
 - **Load Distribution:** Traffic automatically distributed across healthy instances
 - **Cost Optimization:** Serverless functions reduce costs during low-traffic periods
 
-## 🚀 Technical Challenges Solved
+## 🚀 Technical Challenges We Solved
 
 ### Service Discovery
-Implemented service registry pattern where each microservice registers its health status and available endpoints with a central discovery service.
+Our team implemented service registry pattern where each microservice registers its health status and available endpoints with a central discovery service.
 
 ### Data Consistency
-Used eventual consistency model with event sourcing for non-critical updates, while maintaining strong consistency for user authentication and payment-related operations.
+We used eventual consistency model with event sourcing for non-critical updates, while maintaining strong consistency for user authentication and payment-related operations through MongoDB transactions.
 
 ### Cross-Service Authentication
-JWT tokens validated at API Gateway level, then passed to individual services with user context and permissions.
+JWT tokens validated at API Gateway level, then passed to individual services with user context and permissions - a pattern we refined through team collaboration.
+
+### Lambda Cold Start Optimization
+We implemented connection pooling and provisioned concurrency for critical Lambda functions, reducing response times from 2s to 300ms during peak traffic.
 
 ### Monitoring & Observability
-Distributed tracing across services using CloudWatch and custom metrics. Each service logs performance data that gets aggregated for system-wide monitoring.
+Our team set up distributed tracing across services using CloudWatch and custom metrics. Each service logs performance data that gets aggregated for system-wide monitoring.
 
 ## 🔗 Links
 
-- **Portfolio:** [calingabriel.dev](https://calingabriel.dev)
+- **Portfolio:** [calingabriel.com](https://calingabriel.com)
 - **Live Demo:** Coming soon
 
 ---
 
 **💼 Available for similar projects** | **📧 calindotgabriel18@gmail.com** 
-*Specializing in microservices architecture, AWS infrastructure, and scalable distributed systems.*
+*Specializing in microservices architecture, AWS Lambda, and scalable distributed systems with MongoDB.*
+
