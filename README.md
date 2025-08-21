@@ -77,6 +77,5 @@ Distributed tracing across services using CloudWatch and custom metrics. Each se
 
 ---
 
-**💼 Available for similar projects** | **📧 calindotgabriel18@gmail.com** | **💰 €60-80/hour**
-
+**💼 Available for similar projects** | **📧 calindotgabriel18@gmail.com** 
 *Specializing in microservices architecture, AWS infrastructure, and scalable distributed systems.*
